@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Edit Bowler";
+}
+
+@model Bowler
+
+<div>
+    <div class="text-center">
+        <br />
+        <h1>Edit a Bowler</h1>
+        <br />
+    </div>
+    <div>
+        <form method="post">
+            <div class="row">
+                <div class="col-6 form-group">
+                    <label asp-for="BowlerFirstName">First Name</label>
+                    <br />
+                    <input asp-for="BowlerFirstName" class="form-control" />
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="BowlerLastName">Last Name</label>
+                    <br />
+                    <input asp-for="BowlerLastName" class="form-control" />
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="BowlerMiddleInit">Middle Initial</label>
+                    <br />
+                    <input asp-for="BowlerMiddleInit" class="form-control" />
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="TeamID">Team</label>
+                    <br />
+                    <select asp-for="TeamID" class="form-control">
+                        @foreach (Teams t in ViewBag.teams)
+                        {
+                            <option value="@t.TeamID">@t.TeamName</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="BowlerAddress">Address</label>
+                    <br />
+                    <input asp-for="BowlerAddress" class="form-control" />
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="BowlerCity">City</label>
+                    <br />
+                    <input asp-for="BowlerCity" class="form-control" />
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="BowlerState">State</label>
+                    <br />
+                    <input asp-for="BowlerState" class="form-control" />
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="BowlerZip">Zip</label>
+                    <br />
+                    <input asp-for="BowlerZip" class="form-control" />
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="BowlerPhoneNumber">Phone Number</label>
+                    <br />
+                    <input asp-for="BowlerPhoneNumber" class="form-control" />
+                </div>
+                <div class="col-12 form-group">
+                    <input type="submit" class="btn btn-primary btn-large" value="Edit Bowler" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

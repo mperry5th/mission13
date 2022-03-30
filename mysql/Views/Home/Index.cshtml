@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<Bowler>
+
+    <h3 class="text-center">Filter by Team</h3>
+    <div class="nav navbar navbar-dark">
+        <a class="btn btn-outline-secondary" href="/">Home</a>
+        <a class="btn btn-outline-secondary" href="/?team=Marlins">Marlins</a>
+        <a class="btn btn-outline-secondary" href="/?team=Sharks">Sharks</a>
+        <a class="btn btn-outline-secondary" href="/?team=Terrapins">Terrapins</a>
+        <a class="btn btn-outline-secondary" href="/?team=Barracudas">Barracudas</a>
+        <a class="btn btn-outline-secondary" href="/?team=Dolphins">Dolphins</a>
+        <a class="btn btn-outline-secondary" href="/?team=Orcas">Orcas</a>
+        <a class="btn btn-outline-secondary" href="/?team=Manatees">Manatees</a>
+        <a class="btn btn-outline-secondary" href="/?team=Swordfish">Swordfish</a>
+        <a class="btn btn-outline-secondary" href="/?team=Huckleberrys">Huckleberrys</a>
+        <a class="btn btn-outline-secondary" href="/?team=MintJuleps">MintJuleps</a>
+    </div>
+    <div class="text-center">
+        <h1 class="display-3">Bowlers</h1>
+        <h1 class="display-4" id="output"></h1>
+    </div>
+
+    <script>
+        window.onload = function GetURLParameter(sParam) {
+            var sPageURL = window.location.search.substring(1);
+            var sURLVariables = sPageURL.split('&');
+            for (var i = 0; i < sURLVariables.length; i++) {
+                var sParameterName = sURLVariables[i].split('=');
+                //console.log(sParameterName);
+                if (sParameterName[0] !== "") {
+                    document.getElementById("output").innerHTML = sParameterName[1];
+                }
+            }
+        }
+        
+    </script>
+
+    <table class="table table-bordered table-dark">
+        <thead>
+            <tr>
+                <th>Bowler Id</th>
+                <th>First Name</th>
+                <th>Middle Initial</th>
+                <th>Last Name</th>
+                <th>Team</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Phone Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.BowlerID</td>
+                    <td>@x.BowlerFirstName</td>
+                    <td>@x.BowlerMiddleInit</td>
+                    <td>@x.BowlerLastName</td>
+                    <td>@x.Team.TeamName</td>
+                    <td>@x.BowlerAddress</td>
+                    <td>@x.BowlerCity</td>
+                    <td>@x.BowlerState</td>
+                    <td>@x.BowlerZip</td>
+                    <td>@x.BowlerPhoneNumber</td>
+                    <td>
+                        <a class="btn btn-warning p-2" asp-route-id="@x.BowlerID" asp-controller="Home" asp-action="EditBowler">Edit</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger p-2" asp-route-id="@x.BowlerID" asp-controller="Home" asp-action="Delete">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
